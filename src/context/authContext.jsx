@@ -22,17 +22,18 @@ export const AuthContextProvider = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-
-        Cookies.set("fb-access-token", user.accessToken);
-        Cookies.set("fb-session", true);
+console.log(uid);
         fetch(serverURL + "/getcookie?idToken=" + user.accessToken)
           .then((res) => res.json())
           .then((response) => {
             console.log(response);
             if (response.success) {
               Cookies.set("fb-session", response.sessionCookie);
+              fetch(serverURL + "/checkauth",{headers:{"fb-session":response.sessionCookie}}).then(()=>{setCounter(prev=>prev+1)})
+
             } else {
               Cookies.remove("fb-session");
+
             }
           });
         // get userdata
@@ -40,8 +41,6 @@ export const AuthContextProvider = ({ children }) => {
       } else {
         Cookies.remove("fb-session");
 
-        Cookies.remove("fb-access-token");
-        Cookies.remove("fb-session");
         setIsLoggedIn(false);
       }
     });

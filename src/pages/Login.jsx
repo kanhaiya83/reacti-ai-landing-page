@@ -8,6 +8,7 @@ import {
 import googleIcon from "../assets/google.svg";
 import { useAuthContext } from '../context/authContext';
 import { auth } from '../utils/firebase';
+import Header from '../components/Header';
 const LoginPage = () => {
 const {user,userData}   = useAuthContext()
   const [isChecked, setIsChecked] = useState(false);
@@ -33,7 +34,8 @@ const {user,userData}   = useAuthContext()
       };
   return (
     <>
-        <h1 className="text-lg text-center">Current Usage:{`${userData.count}/${userData.limit}`}</h1>
+    <Header/>
+       {user && <h1 className="text-lg text-center">Current Usage:{`${userData.count}/${userData.limit}`}</h1>}
 
       <div className="w-full flex justify-center items-center">
         {user ? (

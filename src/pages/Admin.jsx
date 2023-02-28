@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import CodeForm from "../components/CodeForm";
+import Header from "../components/Header";
 
 const AdminPage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -18,7 +19,12 @@ const AdminPage = () => {
         }
     }
 
-  return (isLoggedIn ? <AdminPanel/> : <LoginScreen handleSubmit={handleSubmit}/>);
+  const content=  (isLoggedIn ? <AdminPanel/> : <LoginScreen handleSubmit={handleSubmit}/>);
+  return (<>
+  <Header/>
+  {content}
+  </>)
+
 };
 const LoginScreen=({handleSubmit})=>{
     return  <div className="w-full min-h-[80vh] flex justify-center items-center">

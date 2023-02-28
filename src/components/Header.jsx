@@ -4,6 +4,7 @@ import { useAuthContext } from "../context/authContext";
 import logo from "./../assets/128.png";
 import Cookies from "js-cookie";
 import { errorToast, successToast } from "../utils/notify";
+import { Link } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -39,11 +40,17 @@ const Header = () => {
             React AI
           </h1>
         </div>
-        {user && (
+        <div>
+        {user &&
+        <>
           <button className=" text-blue-500 font-medium" onClick={openModal}>
             Refer a friend?
           </button>
-        )}
+          </>
+        }
+          <Link to="/profile" className="bg-primary ml-4 p-3 rounded">{user ?"Profile" :"Login"} </Link> 
+        </div>
+
       </header>
       {user && (
         <ReferModal

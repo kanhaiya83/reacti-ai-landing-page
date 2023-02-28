@@ -13,7 +13,7 @@ import AdminPage from "./pages/Admin";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Header/>
   },
   {
     path:"/profile",
@@ -29,7 +29,6 @@ function App() {
   
   return (
     <div className="bg-dark text-white min-w-screen min-h-screen">
-      <Header />
       <RouterProvider router={router}/>
     </div>
   );
