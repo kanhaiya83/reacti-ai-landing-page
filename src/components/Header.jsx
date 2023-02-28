@@ -1,0 +1,166 @@
+import { useEffect, useState } from "react";
+import ReactModal from "react-modal";
+import { useAuthContext } from "../context/authContext";
+import logo from "./../assets/128.png";
+import Cookies from "js-cookie";
+import { errorToast, successToast } from "../utils/notify";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    padding: 0,
+    border: "none",
+    backgroundColor: "transparent",
+  },
+  overlay: {
+    backgroundColor: "rgb(0,0,0,.4)",
+  },
+};
+
+ReactModal.setAppElement("#root");
+const Header = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const { user } = useAuthContext();
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  return (
+    <>
+      <header className="w-full mb-5 px-[5%] py-6 flex justify-between border-b border-slate-800">
+        <div className="flex items-end">
+          <img src={logo} alt="" className="w-10 mr-1" />
+          <h1 className="text-3xl font-medium whitespace-nowrap text-slate-500">
+            React AI
+          </h1>
+        </div>
+        {user && (
+          <button className=" text-blue-500 font-medium" onClick={openModal}>
+            Refer a friend?
+          </button>
+        )}
+      </header>
+      {user && (
+        <ReferModal
+          modalIsOpen={modalIsOpen}
+          setIsOpen={setIsOpen}
+          user={user}
+        />
+      )}
+    </>
+  );
+};
+const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
+  const { userData ,setCounter} = useAuthContext();
+  const [enteredCode, setEnteredCode] = useState("");
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const handleRefer = async () => {
+    console.log(enteredCode);
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_SERVER_URL + "/refer/" + enteredCode,
+        {
+          headers: {
+            "fb-session": Cookies.get("fb-session"),
+          },
+        }
+      );
+      const response = await res.json();
+      if (response.success) {
+        successToast(response.message);
+        setCounter(prev=>prev+1)
+      } else if (response.message) {
+        errorToast(response.message);
+      } else {
+        errorToast("Some error occurred!!");
+      }
+      setIsOpen(false);
+    } catch (e) {
+      console.log(e);
+      errorToast("Some error occurred!!");
+    }
+  };
+  const handleRedeem = async () => {
+    console.log(enteredCode);
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_SERVER_URL + "/redeem/" + enteredCode,
+        {
+          headers: {
+            "fb-session": Cookies.get("fb-session"),
+          },
+        }
+      );
+      const response = await res.json();
+      if (response.success) {
+        successToast(response.message);
+        setCounter(prev=>prev+1)
+
+      } else if (response.message) {
+        errorToast(response.message);
+      } else {
+        errorToast("Some error occurred!!");
+      }
+      setIsOpen(false);
+    } catch (e) {
+      console.log(e);
+      errorToast("Some error occurred!!");
+    }
+  };
+  return (
+    <ReactModal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      style={customStyles}
+      contentLabel="Refer Modal"
+    >
+      <div className="bg-slate-800 text-white px-5 py-4 flex flex-col items-stretch">
+        <h1 className="text-2xl">Refer a friend</h1>
+        <div className="flex mb-4">
+          <h1 className="bg-slate-700 p-2 flex-[3]">{userData.referralCode}</h1>
+          <button
+            className="bg-primary p-2 flex-1"
+            onClick={() => {
+              navigator.clipboard.writeText(userData.referralCode);
+            }}
+          >
+            COPY
+          </button>
+        </div>
+        <h1 className="text-2xl mb-1">Got a referral code?</h1>
+        <div className="flex">
+          <input
+            type="text"
+            value={enteredCode}
+            onChange={(e) => {
+              setEnteredCode(e.target.value);
+            }}
+            className=" bg-slate-500 p-2 flex-[3]"
+          />
+          <button
+            className="bg-primary p-2 flex-1"
+            onClick={() => {
+              if (enteredCode.length > 10) {
+                handleRedeem();
+              }
+              else{
+                handleRefer()
+              }
+            }}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </ReactModal>
+  );
+};
+export default Header;
