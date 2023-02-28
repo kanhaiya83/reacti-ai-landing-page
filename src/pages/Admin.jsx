@@ -21,7 +21,6 @@ const AdminPage = () => {
 
   const content=  (isLoggedIn ? <AdminPanel/> : <LoginScreen handleSubmit={handleSubmit}/>);
   return (<>
-  <Header/>
   {content}
   </>)
 
@@ -45,9 +44,13 @@ const LoginScreen=({handleSubmit})=>{
 const AdminPanel=({setIsLoggedIn})=>{
   const [modalIsOpen, setIsOpen] = useState(false);
   
-    return <div className="w-full px-[5%]">
+    return <div className="w-full px-[5%] py-8">
+      
       <div className="w-full flex justify-end">
-        <button className="bg-primary p-3" onClick={()=>{setIsOpen(true)}}>Generate</button>
+        <button className="bg-primary p-3" onClick={()=>{localStorage.removeItem("isAdminLoggedIn")}}>Logout</button>
+      </div>
+      <div className="w-full flex justify-center">
+        <button className="bg-slate-700 p-3" onClick={()=>{setIsOpen(true)}}>Generate Codes</button>
       </div>
       <CodeForm  modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
     </div>

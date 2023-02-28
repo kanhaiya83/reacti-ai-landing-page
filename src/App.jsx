@@ -13,7 +13,7 @@ import AdminPage from "./pages/Admin";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Header/>
+    element: <LoginPage/>
   },
   {
     path:"/profile",

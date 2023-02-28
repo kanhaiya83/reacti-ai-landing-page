@@ -19,32 +19,7 @@ const customStyles = {
     backgroundColor: "rgb(0,0,0,.4)",
   },
 };
-const dd=[
-    [
-      { value: 'Code', fontWeight: 'bold' },
-      { value: 'Is Used', fontWeight: 'bold' }
-    ],
-    [
-      { type: String, value: '8KTFBRyckVdJPP9ZwrzY' },
-      { type: Boolean, value: false }
-    ],
-    [
-      { type: String, value: 'tmfAG3cKPnOohwONGd4K' },
-      { type: Boolean, value: false }
-    ],
-    [
-      { type: String, value: 'pUJzW1YFuki9hT6hjj48' },
-      { type: Boolean, value: false }
-    ],
-    [
-      { type: String, value: 'FbesxYig4p6iRYx9MkEv' },
-      { type: Boolean, value: false }
-    ],
-    [
-      { type: String, value: '5Mh3GVdKW7xKXcnWAT3Z' },
-      { type: Boolean, value: false }
-    ]
-  ]
+
 ReactModal.setAppElement("#root");
 const CodeForm = ({ modalIsOpen, setIsOpen, user }) => {
   // const {userData} =  useAuthContext()
@@ -76,7 +51,7 @@ const CodeForm = ({ modalIsOpen, setIsOpen, user }) => {
         successToast(response.message);
         setIsOpen(false)
         return await writeXlsxFile(convertToExcelFormat(response.codes), {
-            fileName: 'codes.xlsx'
+            fileName: response.managerName+'.xlsx'
           })
       } else if (response.message) {
         errorToast(response.message);
