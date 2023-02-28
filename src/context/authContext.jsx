@@ -41,7 +41,6 @@ console.log(uid);
       } else {
         Cookies.remove("fb-session");
 
-        setIsLoggedIn(false);
       }
     });
   }, []);
