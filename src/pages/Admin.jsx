@@ -47,7 +47,7 @@ const AdminPanel=({setIsLoggedIn})=>{
     return <div className="w-full px-[5%] py-8">
       
       <div className="w-full flex justify-end">
-        <button className="bg-primary p-3" onClick={()=>{localStorage.removeItem("isAdminLoggedIn")}}>Logout</button>
+        <button className="bg-primary p-3" onClick={()=>{localStorage.removeItem("isAdminLoggedIn");setIsLoggedIn(false)}}>Logout</button>
       </div>
       <div className="w-full flex justify-center">
         <button className="bg-slate-700 p-3" onClick={()=>{setIsOpen(true)}}>Generate Codes</button>
