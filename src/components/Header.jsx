@@ -65,11 +65,16 @@ const Header = () => {
 const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
   const { userData ,setCounter} = useAuthContext();
   const [enteredCode, setEnteredCode] = useState("");
+  const [enteredRedeemCode, setEnteredRedeemCode] = useState("");
+  const [copied,setCopied] = useState(false);
   function closeModal() {
     setIsOpen(false);
   }
 
   const handleRefer = async () => {
+    if(enteredCode.length!=10){
+      return errorToast("Invalid Code!")
+    }
     console.log(enteredCode);
     try {
       const res = await fetch(
@@ -90,16 +95,21 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
         errorToast("Some error occurred!!");
       }
       setIsOpen(false);
+      setEnteredCode("")
+
     } catch (e) {
       console.log(e);
       errorToast("Some error occurred!!");
     }
   };
   const handleRedeem = async () => {
-    console.log(enteredCode);
+    console.log(enteredRedeemCode);
+    if(enteredRedeemCode.length!=20){
+      return errorToast("Invalid Code!")
+    }
     try {
       const res = await fetch(
-        import.meta.env.VITE_SERVER_URL + "/redeem/" + enteredCode,
+        import.meta.env.VITE_SERVER_URL + "/redeem/" + enteredRedeemCode,
         {
           headers: {
             "fb-session": Cookies.get("fb-session"),
@@ -117,6 +127,7 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
         errorToast("Some error occurred!!");
       }
       setIsOpen(false);
+      setEnteredRedeemCode("")
     } catch (e) {
       console.log(e);
       errorToast("Some error occurred!!");
@@ -130,20 +141,24 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
       contentLabel="Refer Modal"
     >
       <div className="bg-slate-800 text-white px-5 py-4 flex flex-col items-stretch">
-        <h1 className="text-2xl">Refer a friend</h1>
-        <div className="flex mb-4">
+        <h1 className="text-2xl text-center mb-2">Refer a friend</h1>
+        <div className="flex mb-3 pb-3 border-b border-slate-600">
           <h1 className="bg-slate-700 p-2 flex-[3]">{userData.referralCode}</h1>
           <button
             className="bg-primary p-2 flex-1"
             onClick={() => {
               navigator.clipboard.writeText(userData.referralCode);
+              setCopied(true)
+              setTimeout(()=>{
+                setCopied(false)
+              },2000)
             }}
           >
-            COPY
+            {copied?"Copied":"COPY"}
           </button>
         </div>
-        <h1 className="text-2xl mb-1">Got a referral code?</h1>
-        <div className="flex">
+        <h1 className="text-xl mb-1">Got a referral code?</h1>
+        <div className="flex mb-4">
           <input
             type="text"
             value={enteredCode}
@@ -154,16 +169,26 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
           />
           <button
             className="bg-primary p-2 flex-1"
-            onClick={() => {
-              if (enteredCode.length > 10) {
-                handleRedeem();
-              }
-              else{
-                handleRefer()
-              }
-            }}
+            onClick={handleRefer}
           >
             Submit
+          </button>
+        </div>
+        <h1 className="text-xl mb-1">Got a coupon code?Redeem here</h1>
+        <div className="flex">
+          <input
+            type="text"
+            value={enteredRedeemCode}
+            onChange={(e) => {
+              setEnteredRedeemCode(e.target.value);
+            }}
+            className=" bg-slate-500 p-2 flex-[3]"
+          />
+          <button
+            className="bg-primary p-2 flex-1"
+            onClick={handleRedeem}
+          >
+            Redeem
           </button>
         </div>
       </div>

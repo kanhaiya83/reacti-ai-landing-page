@@ -35,6 +35,7 @@ const {user,userData}   = useAuthContext()
   return (
     <>
     <Header/>
+    {user && user.email && <h1 className="text-lg text-center text-slate-400">Logged in as {user.email}</h1>}
        {user && <h1 className="text-lg text-center">Current Usage:{`${userData.count}/${userData.limit}`}</h1>}
 
       <div className="w-full flex justify-center items-center">
