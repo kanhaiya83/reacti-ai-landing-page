@@ -50,8 +50,8 @@ const CodeForm = ({ modalIsOpen, setIsOpen, user }) => {
       if (response.success) {
         successToast(response.message);
         setIsOpen(false)
-        return await writeXlsxFile(convertToExcelFormat(response.codes), {
-            fileName: response.managerName+'.xlsx'
+        return await writeXlsxFile(convertToExcelFormat(response.data.codes), {
+            fileName: response.data.managerName+'.xlsx'
           })
       } else if (response.message) {
         errorToast(response.message);
