@@ -10,10 +10,13 @@ import { useEffect } from "react";
 import Header from "./components/Header";
 import LoginPage from "./pages/Login";
 import AdminPage from "./pages/Admin";
+import "./App.css"
+import HomePage from "./pages/Home";
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage/>
+    element: <HomePage/>
   },
   {
     path:"/profile",
@@ -31,7 +34,7 @@ function App() {
 
   
   return (
-    <div className="bg-dark text-white min-w-screen min-h-screen">
+    <div className="bg-[#191827] text-white min-w-screen min-h-screen">
       <RouterProvider router={router}/>
     </div>
   );

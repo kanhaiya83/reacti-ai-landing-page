@@ -1,0 +1,263 @@
+.guides {
+  padding: 0px 50px;
+  margin-top: 140px;
+}
+.guides .heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.guides .heading h1 {
+  width: 771px;
+  height: 128px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 64px;
+  text-align: center;
+  letter-spacing: -0.03em;
+  background: linear-gradient(180deg, #f6f6f7 0%, #7e808f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+.guides .heading p {
+  width: 949px;
+  height: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: -0.03em;
+  background: linear-gradient(180deg, #f6f6f7 0%, #7e808f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-top: 20px;
+}
+
+.guides .card1 {
+  margin-top: 40px;
+  padding: 70px;
+  isolation: isolate;
+  width: 1224px;
+  height: 436px;
+  background: #0e1330;
+  border: 1px solid #282d45;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+}
+.guides .card1 div h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.03em;
+  color: #f6f6f7;
+  margin-bottom: 15px;
+}
+.guides .card1 div ol li {
+  line-height: 24px;
+  color: #8f9bb7;
+  list-style-position: inside;
+}
+.guides .card1 div button {
+  margin-top: 35px;
+  padding: 15px 25px;
+  background: linear-gradient(
+    261.47deg,
+    rgba(21, 25, 52, 0.52) 14.6%,
+    rgba(21, 25, 52, 0.08) 49.66%,
+    rgba(21, 25, 52, 0.49) 87.77%
+  );
+  border: 1.2px solid #282d45;
+  border-radius: 46px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  line-height: 16px;
+  color: #f6f6f7;
+}
+
+.guides .card2 {
+  margin-top: 40px;
+  width: 1224px;
+  height: 735px;
+  background: #0e1330;
+  border-radius: 10px;
+
+  display: flex;
+}
+.guides .card2 div div {
+  width: 496px;
+  height: 418px;
+  padding: 70px;
+  background: #0e1330;
+  border: 1px solid #282d45;
+  border-radius: 10px;
+}
+.guides .card2 div div h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.03em;
+  color: #f6f6f7;
+  margin-bottom: 15px;
+}
+.guides .card2 div div ol li {
+  list-style-position: inside;
+  font-size: 18px;
+  line-height: 26px;
+  color: #8f9bb7;
+}
+.guides .card2 div img {
+  margin-top: 82px;
+  margin-left: 50px;
+}
+.guides .card2 > img {
+  margin-left: 100px;
+  padding: 30px 70px;
+  background: #0e1330;
+  border: 1px solid #282d45;
+  border-radius: 10px;
+}
+
+.guides .btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+.guides .btns div .btn1 {
+  padding: 15px 25px;
+  background: #7214ff;
+  border-radius: 36px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  color: #ffffff;
+}
+.guides .btns div .btn2 {
+  padding: 15px 25px;
+  background: linear-gradient(
+    261.47deg,
+    rgba(21, 25, 52, 0.52) 14.6%,
+    rgba(21, 25, 52, 0.08) 49.66%,
+    rgba(21, 25, 52, 0.49) 87.77%
+  );
+  border: 1.2px solid #282d45;
+  border-radius: 46px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  line-height: 16px;
+  color: #f6f6f7;
+}
+
+@media screen and (max-width: 1200px) {
+  .guides .heading p {
+    width: 100%;
+  }
+
+  .guides .card1 {
+    padding: 30px;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+  }
+
+  .guides .card2 {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+  .guides .card2 div div {
+    width: 100%;
+    height: fit-content;
+    padding: 70px;
+  }
+  .guides .card2 div img {
+    display: none;
+  }
+  .guides .card2 > img {
+    margin-left: 0px;
+    padding: 30px 70px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .guides {
+    margin-top: 100px;
+  }
+  .guides .heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .guides .heading h1 {
+    width: 100%;
+    height: fit-content;
+    font-size: 46px;
+    text-align: start;
+  }
+  .guides .heading p {
+    width: 100%;
+    height: fit-content;
+    font-size: 22px;
+    text-align: start;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .guides .card1 img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .guides {
+    padding: 0px 20px;
+  }
+
+  .guides .card1 div ol li {
+    margin-top: 10px;
+  }
+
+  .guides .card2 {
+    padding: 0px;
+  }
+  .guides .card2 div div {
+    padding: 30px;
+  }
+  .guides .card2 div div ol li {
+    margin-top: 10px;
+  }
+  .guides .card2 > img {
+    padding: 30px 30px;
+  }
+
+  .guides .btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .guides .btns div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .guides .btns div .btn1 {
+    margin-bottom: 10px;
+  }
+}

@@ -33,22 +33,22 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full mb-5 px-[5%] py-6 flex justify-between border-b border-slate-800">
+      <header className="w-full mb-5 px-[10%] py-6 flex justify-between border-b border-slate-800">
         <div className="flex items-end">
-          <img src={logo} alt="" className="w-10 mr-1" />
-          <h1 className="text-3xl font-medium whitespace-nowrap text-slate-500">
-            React AI
-          </h1>
+          {/* <img src={logo} alt="" className="w-10 mr-1" /> */}
+          <Link to="/" className="text-2xl font-bold whitespace-nowrap text-white">
+            REACT.AI
+          </Link>
         </div>
         <div>
         {user &&
         <>
-          <button className=" text-blue-500 font-medium" onClick={openModal}>
+          <button className=" text-white  py-4 px-7 rounded-full font-medium bg-primary" onClick={openModal}>
             Refer a friend?
           </button>
           </>
         }
-          <Link to="/profile" className="bg-primary ml-4 p-3 rounded">{user ?"Profile" :"Login"} </Link> 
+          {/* <Link to="/profile" className="bg-primary ml-4 p-3 rounded">{user ?"Profile" :"Login"} </Link>  */}
         </div>
 
       </header>

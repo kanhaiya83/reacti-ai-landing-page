@@ -1,0 +1,85 @@
+.community {
+  display: flex;
+  justify-content: center;
+  margin-top: 139px;
+}
+.community div {
+  background-image: url(../../assets/discordShape.png),
+    url(../../assets/discordBg.png);
+  width: 1016px;
+  height: 450px;
+}
+
+.community div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 79px 240.5px;
+}
+.community div h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  letter-spacing: -0.03em;
+  color: #f6f6f7;
+}
+.community div p {
+  line-height: 24px;
+  text-align: center;
+  color: #8f9bb7;
+}
+.community div button {
+  padding: 15px 25px;
+  background: #5865f2;
+  border-radius: 36px;
+  border: none;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 1200px) {
+  .community {
+    margin-top: 100px;
+    padding: 0px 30px;
+  }
+  .community div {
+    background-image: url(../../assets/discordShape.png),
+      url(../../assets/discordBg.png);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 450px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 79px 240.5px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .community div {
+    width: 100%;
+    height: 450px;
+    padding: 50px 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .community {
+    margin-top: 50px;
+    padding: 0px 20px;
+  }
+  .community div {
+    width: 100%;
+    height: 450px;
+    padding: 40px 50px;
+  }
+}
