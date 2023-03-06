@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/authContext";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-
+const {user} = useAuthContext()
   const handleShow = () => {
     setShow(true);
   };
@@ -41,7 +42,7 @@ const Navbar = () => {
         Get a demo
       </a>
       <Link className="profile-link ml-4" to="/profile">
-        Profile
+        {user ? "Profile" : "Login"} 
       </Link>
       </div>
       <FaBars onClick={handleShow} />

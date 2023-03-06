@@ -12,6 +12,7 @@ import LoginPage from "./pages/Login";
 import AdminPage from "./pages/Admin";
 import "./App.css"
 import HomePage from "./pages/Home";
+import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,9 @@ const router = createBrowserRouter([
   }, {
     path:"/login",
     element:<LoginPage/>
+  }, {
+    path:"/privacy-policy",
+    element:<PrivacyPolicyPage/>
   },
   {
     path:"/admin",
