@@ -37,7 +37,7 @@ const Header = () => {
         <div className="flex items-end">
           {/* <img src={logo} alt="" className="w-10 mr-1" /> */}
           <Link to="/" className="text-2xl font-bold whitespace-nowrap text-white">
-            REACT.AI
+            REACTI.AI
           </Link>
         </div>
         <div>
