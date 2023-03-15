@@ -9,8 +9,8 @@ const Community = () => {
         <img src={logo} alt="discord logo" />
         <h1>Join the community</h1>
         <p>
-          Join our 400,000+ person community and contribute to a more private
-          and decentralized internet. Start for free.
+          Join our Beta Tester community and contribute to a more private and
+          decentralized internet. Start for free.
         </p>
         <button>Join Discord</button>
       </div>

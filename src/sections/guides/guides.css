@@ -1,6 +1,9 @@
 .guides {
   padding: 0px 50px;
   margin-top: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .guides .heading {
   display: flex;
@@ -42,12 +45,16 @@
 }
 
 .guides .card1 {
+  background-image: url("../../assets/leftBg.png"),
+    url("../../assets/rightBg.png");
+  background-position: center;
+  background-size: cover;
   margin-top: 40px;
   padding: 70px;
   isolation: isolate;
   width: 1224px;
   height: 436px;
-  background: #0e1330;
+  /* background: #0e1330; */
   border: 1px solid #282d45;
   border-radius: 10px;
 
@@ -91,20 +98,57 @@
   margin-top: 40px;
   width: 1224px;
   height: 735px;
-  background: #0e1330;
+  /* background: #0e1330; */
   border-radius: 10px;
 
   display: flex;
 }
-.guides .card2 div div {
+.guides .card2 .left {
+  position: relative;
   width: 496px;
-  height: 418px;
-  padding: 70px;
+  height: 100%;
+  padding: 50px 55px;
   background: #0e1330;
   border: 1px solid #282d45;
   border-radius: 10px;
 }
-.guides .card2 div div h1 {
+.guides .card2 .left .blur {
+  position: absolute;
+}
+.guides .card2 .left .blur1 {
+  width: 118px;
+  height: 118px;
+  left: 351px;
+  top: 38px;
+  background: #41e88d;
+  filter: blur(125px);
+}
+.guides .card2 .left .blur2 {
+  width: 118px;
+  height: 118px;
+  left: 35px;
+  top: 441px;
+  background: #7214ff;
+  filter: blur(125px);
+}
+.guides .card2 .left .blur3 {
+  width: 118px;
+  height: 80.86px;
+  left: 351px;
+  top: 38px;
+  background: #41e88d;
+  filter: blur(125px);
+}
+.guides .card2 .left .blur4 {
+  width: 118px;
+  height: 80.86px;
+  left: 35px;
+  top: 314.14px;
+  background: #7214ff;
+  filter: blur(125px);
+}
+
+.guides .card2 .left h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: 32px;
@@ -113,20 +157,27 @@
   color: #f6f6f7;
   margin-bottom: 15px;
 }
-.guides .card2 div div ol li {
+.guides .card2 .left ol li {
   list-style-position: inside;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 24px;
+  line-height: 52px;
   color: #8f9bb7;
 }
-.guides .card2 div img {
-  margin-top: 82px;
-  margin-left: 50px;
-}
-.guides .card2 > img {
+
+.guides .card2 .right {
   margin-left: 100px;
+  width: 60%;
+  background-image: url("../../assets/Bg\ Shape\ \(3\).png");
+  background-position: center;
+  background-size: cover;
+}
+.guides .card2 .right img {
+  height: 100%;
+  background-image: url("../../assets/Bg\ Shape\ \(2\).png");
+  background-position: center;
+  background-size: cover;
   padding: 30px 70px;
-  background: #0e1330;
+
   border: 1px solid #282d45;
   border-radius: 10px;
 }
@@ -180,16 +231,19 @@
     display: flex;
     flex-direction: column;
   }
-  .guides .card2 div div {
+  .guides .card2 .left {
     width: 100%;
     height: fit-content;
     padding: 70px;
   }
-  .guides .card2 div img {
-    display: none;
-  }
-  .guides .card2 > img {
+  .guides .card2 .right {
     margin-left: 0px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .guides .card2 .right img {
+    /* margin-left: 0px; */
+    width: 100%;
     padding: 30px 70px;
   }
 }
@@ -235,13 +289,13 @@
   .guides .card2 {
     padding: 0px;
   }
-  .guides .card2 div div {
+  .guides .card2 .left {
     padding: 30px;
   }
-  .guides .card2 div div ol li {
+  .guides .card2 .left ol li {
     margin-top: 10px;
   }
-  .guides .card2 > img {
+  .guides .card2 .right img {
     padding: 30px 30px;
   }
 
@@ -259,5 +313,8 @@
   }
   .guides .btns div .btn1 {
     margin-bottom: 10px;
+  }
+  .blur {
+    display: none;
   }
 }

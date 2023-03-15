@@ -1,9 +1,9 @@
 import React from "react";
 import "./reviews.css";
-import card from "../../assets/Card.png";
+import card from "../../assets/Card.svg";
 import bg from "../../assets/twBg.png";
-import card2 from "../../assets/Card (1).png";
-import card3 from "../../assets/Card (2).png";
+import card2 from "../../assets/Card (1).svg";
+import card3 from "../../assets/Card (2).svg";
 import bg2 from "../../assets/Mask group (1).png";
 import bg3 from "../../assets/Mask group (2).png";
 import { BsArrowRightSquare, BsArrowLeftSquare } from "react-icons/bs";

@@ -14,6 +14,10 @@ body {
   background-color: #060b27;
   color: white;
 }
+.hidden {
+  height: 100vh;
+  overflow-y: hidden;
+}
 
 .twitterImg-wrap {
   width: 100%;
@@ -30,52 +34,6 @@ body {
   padding: 50px;
 }
 
-.btns-section {
-  width: full;
-  height: 199px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0e1330;
-}
-.btns-section div {
-  display: flex;
-  align-items: center;
-}
-.btns-section div div {
-  padding: 20px;
-  border: 1px dashed #9747ff;
-  border-radius: 5px;
-  margin-right: 18px;
-}
-.btns-section .btn1 {
-  padding: 15px 25px;
-  background: linear-gradient(
-    261.47deg,
-    rgba(21, 25, 52, 0.52) 14.6%,
-    rgba(21, 25, 52, 0.08) 49.66%,
-    rgba(21, 25, 52, 0.49) 87.77%
-  );
-  border: 1.2px solid #282d45;
-  border-radius: 46px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900;
-  line-height: 16px;
-  color: #f6f6f7;
-}
-.btns-section .btn2 {
-  padding: 15px 25px;
-  background: #7214ff;
-  border-radius: 36px;
-  border: none;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900;
-  line-height: 16px;
-  color: #ffffff;
-}
-
 @media screen and (max-width: 1000px) {
   .twitterImg-wrap {
     width: 100%;
@@ -90,43 +48,5 @@ body {
   .twitterImg-wrap div img {
     object-fit: cover;
     width: 100%;
-  }
-
-  .btns-section div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .btns-section div {
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .btns-section div div {
-    width: fit-content;
-    display: flex;
-    justify-content: space-between;
-    padding: 0px;
-  }
-  .btns-section .btn1 {
-    margin-right: 00px;
-  }
-  .btns-section .btn2 {
-    margin-top: 0px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .btns-section {
-    height: fit-content;
-    padding: 20px 0px;
-  }
-  .btns-section div {
-    justify-content: space-evenly;
   }
 }

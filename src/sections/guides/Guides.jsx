@@ -2,7 +2,6 @@ import React from "react";
 import "./guides.css";
 import image1 from "../../assets/frame43.png";
 import image2 from "../../assets/Frame 48.png";
-import image3 from "../../assets/frame20.png";
 
 const Guides = () => {
   return (
@@ -35,33 +34,35 @@ const Guides = () => {
       </div>
 
       <div className="card2">
-        <div>
-          <div>
-            <h1>Pin the extension for easy access.</h1>
-            <ol type="1">
-              <li>Visit Twitter and select a tweet you want to reply to.</li>
-              <li>
-                In the comment section, select one of the suggested tones based
-                on the tweet's context and hit enter.
-              </li>
-              <li>Reacti.ai will generate a reply for you to post.</li>
-              <li>
-                Boost your engagement by replying more and connecting with your
-                audience.
-              </li>
-            </ol>
-          </div>
-
-          <img src={image3} alt="stats" />
+        <div className="left">
+          <div className="blur blur1"></div>
+          <div className="blur blur2"></div>
+          <div className="blur blur3"></div>
+          <div className="blur blur4"></div>
+          <h1>Pin the extension for easy access.</h1>
+          <ol type="1">
+            <li>Visit Twitter and select a tweet you want to reply to.</li>
+            <li>
+              In the comment section, select one of the suggested tones based on
+              the tweet's context and hit enter.
+            </li>
+            <li>Reacti.ai will generate a reply for you to post.</li>
+            <li>
+              Boost your engagement by replying more and connecting with your
+              audience.
+            </li>
+          </ol>
         </div>
 
-        <img src={image2} alt="Twitter" />
+        <div className="right">
+          <img src={image2} alt="Twitter" />
+        </div>
       </div>
 
       <div className="btns">
         <div>
           <button className="btn1">Get a Started</button>
-          <button className="btn2">Browse all feature</button>
+          <button className="btn2">Browse all features</button>
         </div>
       </div>
     </div>

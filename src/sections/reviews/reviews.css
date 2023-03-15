@@ -1,3 +1,8 @@
+.reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .reviews .heading {
   margin-top: 122px;
   display: flex;
@@ -25,10 +30,11 @@
 }
 
 .reviews .reviews-wrap {
+  width: 100%;
   margin-top: 60px;
-  display: grid;
+  display: flex;
   justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(392px, 392px));
+  flex-wrap: wrap;
   grid-gap: 24px;
 }
 .reviews .reviews-wrap .review-box {
@@ -42,12 +48,14 @@
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
   z-index: -1;
 }
 
 .reviews .nav-wrap {
   margin-top: 45px;
   width: 100%;
+  height: fit-content;
   display: flex;
   justify-content: center;
 }

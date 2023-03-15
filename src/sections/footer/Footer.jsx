@@ -33,14 +33,14 @@ const Footer = () => {
           <li>Login</li>
           <li>SIgn Up</li>
         </ul>
-        <ul>
+        {/* <ul>
           <h1>Utlity Pages</h1>
           <li>Style guide</li>
           <li>Password protected</li>
           <li>404 not found</li>
           <li>Licenses</li>
           <li>Changelog</li>
-        </ul>
+        </ul> */}
       </div>
     </footer>
   );

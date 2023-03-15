@@ -103,7 +103,7 @@ const Hero = () => {
             <img className="person-img" src={person} alt="person" />
             <div>
               <p>Welcome</p>
-              <h1>Danaiel Estasmos</h1>
+              <h1>Daniel Estasmos</h1>
             </div>
           </div>
         </div>

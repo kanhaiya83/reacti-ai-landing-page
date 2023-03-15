@@ -6,13 +6,15 @@ import Services from "../sections/services/Services";
 import twitterHome from "../assets/Frame 49.png";
 import Reviews from "../sections/reviews/Reviews";
 import Community from "../sections/community/Community";
-import Blog from "../sections/blog/Blog";
 import Footer from "../sections/footer/Footer";
+import { useState } from "react";
 
-function HomePage() {
+function App() {
+  const [show, setShow] = useState(false);
+
   return (
-    <div>
-      <Navbar />
+    <div className={show && "hidden"}>
+      <Navbar show={show} setShow={setShow} />
       <Hero />
       <Services />
       <Guides />
@@ -23,18 +25,10 @@ function HomePage() {
       </div>
       <Reviews />
       <Community />
-      <Blog />
+
       <Footer />
-      <div className="btns-section">
-        <div>
-          <div>
-            <button className="btn1">View pricing</button>
-          </div>
-          <button className="btn2">Get a demo</button>
-        </div>
-      </div>
     </div>
   );
 }
 
-export default HomePage;
+export default App;

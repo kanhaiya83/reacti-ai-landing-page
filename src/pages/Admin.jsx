@@ -7,7 +7,7 @@ import { successToast } from "../utils/notify";
 
 const AdminPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [customPrompt, setCustomPrompt] = useState("dijvwhviuew");
+  const [customPrompt, setCustomPrompt] = useState("Loading...");
   const [couponsData, setCouponsData] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("isAdminLoggedIn")) {
@@ -45,6 +45,9 @@ const AdminPage = () => {
     if (e.target["password"].value === "admin@123") {
       setIsLoggedIn(true);
       localStorage.setItem("isAdminLoggedIn", true);
+    }
+    else{
+      alert("Wrong password!")
     }
   };
 
