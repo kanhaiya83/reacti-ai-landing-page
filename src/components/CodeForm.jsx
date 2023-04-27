@@ -21,7 +21,7 @@ const customStyles = {
 };
 
 ReactModal.setAppElement("#root");
-const CodeForm = ({ modalIsOpen, setIsOpen, user }) => {
+const CodeForm = ({ modalIsOpen, setIsOpen, adminQuery }) => {
   // const {userData} =  useAuthContext()
   function closeModal() {
     setIsOpen(false);
@@ -37,7 +37,7 @@ const CodeForm = ({ modalIsOpen, setIsOpen, user }) => {
     }
     try {
       const res = await fetch(
-        import.meta.env.VITE_SERVER_URL + "/generate",
+        import.meta.env.VITE_SERVER_URL + "/admin/generatecoupons",
         {
             method:"POST",
           headers: {
@@ -50,7 +50,8 @@ const CodeForm = ({ modalIsOpen, setIsOpen, user }) => {
       if (response.success) {
         successToast(response.message);
         setIsOpen(false)
-        return await writeXlsxFile(convertToExcelFormat(response.data.codes), {
+        adminQuery.refetch()
+        return await writeXlsxFile(convertToExcelFormat(response.data), {
             fileName: response.data.managerName+'.xlsx'
           })
       } else if (response.message) {

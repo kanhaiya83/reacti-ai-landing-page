@@ -1,14 +1,24 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
 import CodeForm from "../components/CodeForm";
 import Header from "../components/Header";
 import { downloadExcel } from "../utils";
 import { successToast } from "../utils/notify";
-
+const adminAxios = axios.create({
+  baseURL: import.meta.env.VITE_SERVER_URL,
+  headers: {'admin-access-token': 'foobar'}
+}
+)
 const AdminPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [customPrompt, setCustomPrompt] = useState("Loading...");
   const [couponsData, setCouponsData] = useState([]);
+  const adminQuery = useQuery("coupons",async()=>{
+    const res = await adminAxios.get("/admin/fetchdata")
+    return res.data
+  },{enabled:!!isLoggedIn})
   useEffect(() => {
     if (localStorage.getItem("isAdminLoggedIn")) {
       setIsLoggedIn(true);
@@ -54,8 +64,7 @@ const AdminPage = () => {
   const content = isLoggedIn ? (
     <AdminPanel
       _hooks={{
-        couponsData,
-        setCouponsData,
+        adminQuery,
         setIsLoggedIn,
         customPrompt,
         setCustomPrompt,
@@ -86,8 +95,7 @@ const LoginScreen = ({ handleSubmit }) => {
 };
 const AdminPanel = ({ _hooks }) => {
   const {
-    couponsData,
-    setCouponsData,
+    adminQuery,
     setIsLoggedIn,
     customPrompt,
     setCustomPrompt,
@@ -109,7 +117,7 @@ const AdminPanel = ({ _hooks }) => {
        successToast("Prompt changed successfully!")
       }
     }
-  
+  const coupons  = adminQuery.isSuccess?adminQuery.data.coupons :[]
   return (
     <div className="w-full px-[5%] py-8">
       <div className="w-full flex justify-end">
@@ -158,13 +166,13 @@ const AdminPanel = ({ _hooks }) => {
         <div className=" col-span-2 p-2">
           <button></button>
         </div>
-        {couponsData.map((c, i) => {
+        {coupons.map((c, i) => {
           return (
             <RowItem
               data={c}
               index={i}
               key={i}
-              setCouponsData={setCouponsData}
+              // setCouponsData={setCouponsData}
             />
           );
         })}
@@ -179,20 +187,12 @@ const AdminPanel = ({ _hooks }) => {
         ></textarea>
         <button onClick={handlePromptSave} className="bg-primary w-fit my-4 p-3 rounded">Save</button>
       </div>
-      <CodeForm modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
+      <CodeForm modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} adminQuery={adminQuery}/>
     </div>
   );
 };
-const RowItem = ({ data, index, setCouponsData }) => {
+const RowItem = ({ data, index, }) => {
   const [open, setOpen] = useState(false);
-  let codeUsed = 0;
-  let requestCount = 0;
-  data.codes.forEach((c) => {
-    if (c.isUsed) {
-      codeUsed++;
-    }
-    requestCount = c.requestCount;
-  });
   const handleRevoke = async () => {
     const res = await fetch(
       import.meta.env.VITE_SERVER_URL +
@@ -207,7 +207,7 @@ const RowItem = ({ data, index, setCouponsData }) => {
       for (const key in response.data) {
         dataArr.push({ ...response.data[key], key });
       }
-      setCouponsData(dataArr);
+      // setCouponsData(dataArr);
     }
   };
   const handleDownload = async () => {
@@ -222,13 +222,13 @@ const RowItem = ({ data, index, setCouponsData }) => {
         <h1>{data.managerName}</h1>
       </div>
       <div className=" col-span-3 p-2">
-        <h1>{data.codes.length}</h1>
+        <h1>{data.count}</h1>
       </div>
       <div className=" col-span-3 p-2">
-        <h1>{codeUsed}</h1>
+        <h1>{data?.usedCodes?.length || 0}</h1>
       </div>
       <div className=" col-span-3 p-2">
-        <h1>{requestCount}</h1>
+        <h1>{data.requestCount}</h1>
       </div>
       <div className=" col-span-3 p-2">
         <h1>
@@ -242,7 +242,7 @@ const RowItem = ({ data, index, setCouponsData }) => {
       <div className=" col-span-3 p-2">
         <h1>
           {data.date
-            ? new Date(data.date).toDateString()
+            ? new Date(data.date._seconds*1000).toDateString()
             : new Date().toDateString()}
         </h1>
       </div>

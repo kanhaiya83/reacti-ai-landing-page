@@ -11,18 +11,26 @@ export const convertToExcelFormat = (jsonData) => {
       value: "Is Used",
       fontWeight: "bold",
     },
+    {
+      value:"Reward",
+      fontWeight: "bold",
+    }
   ];
   data.push(HEADER_ROW);
 
-  jsonData.forEach((codeData, i) => {
+  jsonData.codes.forEach((code, i) => {
     data.push([
       {
         type: String,
-        value: codeData.code,
+        value: code,
       },
       {
         type: Boolean,
         value: false,
+      },
+      {
+        type: String,
+        value: `${jsonData.requestCount} requests`,
       },
     ]);
   });
