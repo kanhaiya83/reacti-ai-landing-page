@@ -23,7 +23,7 @@ export const pricingPlansData = [
     features:featurePoints.slice(0,2),
     monthly_limit: 30,
     daily_limit: 30,
-    premium_support: true,
+    premium_support: false,
   },
   {
     price: 5,
@@ -35,7 +35,7 @@ export const pricingPlansData = [
     features:[...featurePoints.slice(0,2),"Basic Insights on User Engagements"],
     monthly_limit: 200,
     daily_limit: 5,
-    premium_support: true,
+    premium_support: false,
   },
   {
     price: 15,
@@ -48,7 +48,7 @@ export const pricingPlansData = [
 
     monthly_limit: 1500,
     daily_limit: 50,
-    premium_support: false,
+    premium_support: true,
   },
   {
     price: 30,

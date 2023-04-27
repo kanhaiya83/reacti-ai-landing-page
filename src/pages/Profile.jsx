@@ -70,7 +70,7 @@ const ProfilePage = () => {
                 {user.email}
               </h1>
               <h4 className="text-slate-400">
-                {
+               <div className="text-white font-medium">Plan:</div> {
                   pricingPlansData.find(
                     (plan) => plan.plan_id === currentPlanID
                   ).name
