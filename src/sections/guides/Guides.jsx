@@ -2,11 +2,17 @@ import React from "react";
 import "./guides.css";
 import image1 from "../../assets/frame43.png";
 import image2 from "../../assets/Frame 48.png";
+import useGsap from "../../hooks/useGsap";
+import useGsap2 from "../../hooks/useGsap2";
+import useGsapOpacity from "../../hooks/useGsapOpacity";
 
 const Guides = () => {
+  const slideUpRef = useGsap();
+  const slideUpRef2 = useGsap2();
+  const opacityRef = useGsapOpacity();
   return (
     <div className="guides">
-      <div className="heading">
+      <div ref={opacityRef} className="heading">
         <h1>How to Install Reacti.ai Extension</h1>
         <p>
           Installing the Reacti.ai extension is quick and easy. Follow these
@@ -14,7 +20,7 @@ const Guides = () => {
         </p>
       </div>
 
-      <div className="card1">
+      <div ref={slideUpRef} className="card1">
         <div>
           <h1>7 Simple Steps to Install and Use Reacti.ai </h1>
           <ol type="1">
@@ -33,7 +39,7 @@ const Guides = () => {
         <img src={image1} alt="extension" />
       </div>
 
-      <div className="card2">
+      <div ref={slideUpRef2} className="card2">
         <div className="left">
           <div className="blur blur1"></div>
           <div className="blur blur2"></div>
