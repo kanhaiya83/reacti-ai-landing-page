@@ -23,7 +23,7 @@ export const pricingPlansData = [
     features:featurePoints.slice(0,2),
     monthly_limit: 30,
     daily_limit: 30,
-    premium_support: false,
+    premium_support: true,
   },
   {
     price: 5,
