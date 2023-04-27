@@ -79,7 +79,7 @@ const PricingPage = () => {
     <Layout>    <section class=" body-font overflow-hidden">
       <div class="container px-5 py-24 mx-auto">
         <h1 className="text-5xl text-gray-100 mb-3 text-center">Simple Straight forward Pricing</h1>
-        <h4 className="text-xl text-center text-gray-400 mb-1">Choose the plan that's right for your business.</h4>
+        <h4 className="text-xl text-center text-gray-400 mb-8">Choose the plan that's right for your business.</h4>
         <div class="flex flex-wrap -m-4">
           {pricingPlansData.map((d) => {
             return <PricingCard key={d.price} data={d} onClick={()=>{handlePayment(d.plan_id)}} currentPlan={userPlanId === d.plan_id}/>;
