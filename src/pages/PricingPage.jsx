@@ -30,7 +30,7 @@ export const pricingPlansData = [
     plan_id:5,
     name: "Starter",
     heading: "For Beginners",
-    heading2: "$499/year per account",
+    heading2: "$60/year per account",
     credits:5000,
     features:[...featurePoints.slice(0,2),"Basic Insights on User Engagements"],
     monthly_limit: 200,
@@ -41,21 +41,21 @@ export const pricingPlansData = [
     price: 15,
     plan_id:15,
     name: "Basic",
-    heading: "For the Community Champions",
-    heading2: "$999/year per account",
+    heading: "For the Active Users",
+    heading2: "$180/year per account",
     credits:-1,
     features:featurePoints.slice(0),
 
     monthly_limit: 1500,
     daily_limit: 50,
-    premium_support: true,
+    premium_support: false,
   },
   {
     price: 30,
     plan_id:30,
     name: "Professional",
-    heading: "For the Community Champions",
-    heading2: "$999/year per account",
+    heading: "For the Real Influencers",
+    heading2: "$360/year per account",
     credits:-1,
     features:featurePoints.slice(0),
 
@@ -80,8 +80,6 @@ const PricingPage = () => {
       <div class="container px-5 py-24 mx-auto">
         <h1 className="text-5xl text-gray-100 mb-3 text-center">Simple Straight forward Pricing</h1>
         <h4 className="text-xl text-center text-gray-400 mb-1">Choose the plan that's right for your business.</h4>
-        <h4 className="text-xl text-center text-gray-400 mb-1">Subscription is tied to one moderation bot.</h4>
-        <h4 className="text-xl text-center text-gray-400 mb-10">Unsubscribe anytime.No questions asked.</h4>
         <div class="flex flex-wrap -m-4">
           {pricingPlansData.map((d) => {
             return <PricingCard key={d.price} data={d} onClick={()=>{handlePayment(d.plan_id)}} currentPlan={userPlanId === d.plan_id}/>;
@@ -118,23 +116,18 @@ const PricingCard = ({ currentPlan, onClick, data }) => {
           </h1>
           <h2 className="font-thin  text-gray-300  py-2">{data.heading2}</h2>
         </div>
-        <h1 className="text-gray-200 text-center text-lg mb-4">
-          {data.credits === -1 ? "Unlimited Credits":`${data.credits} credits!`}
-        </h1>
         <p class="flex items-center text-gray-400 mb-2">
           <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-800 text-gray-500 rounded-full flex-shrink-0">
             <img src={TickIcon} alt="" />
           </span>
           {data.heading2}
         </p>
-       {data.features.map(t=>{
-        return  <p class="flex items-center text-gray-400 mb-2" key={t}>
-        <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-800 text-gray-500 rounded-full flex-shrink-0">
-          <img src={TickIcon} alt="" />
-        </span>
-        {t}
-      </p>
-       })}
+        <p class="flex items-center text-gray-400 mb-2">
+          <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-800 text-gray-500 rounded-full flex-shrink-0">
+            <img src={TickIcon} alt="" />
+          </span>
+          {"All type of reactions"}
+        </p>
         <p
           class={`flex items-center  mb-2 ${
             data.premium_support ? "text-green-500" : "text-red-500"
