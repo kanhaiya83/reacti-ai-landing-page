@@ -2,20 +2,29 @@ import React, { useEffect, useState } from 'react'
 import {
     signInWithPopup,
     GoogleAuthProvider,
-    onAuthStateChanged,
-    signOut,
   } from "firebase/auth";
 import googleIcon from "../assets/google.svg";
 import { useAuthContext } from '../context/authContext';
 import { auth } from '../utils/firebase';
-import Header from '../components/Header';
+import Layout from '../components/Layout';
+import { useLocation, useNavigate } from 'react-router-dom';
 const LoginPage = () => {
 const {user,userData}   = useAuthContext()
+const location = useLocation()
+const navigate = useNavigate()
+useEffect(()=>{
+  if(user){
+    if(location.state && location.state.from){
+      navigate(location.state.from)
+    } 
+    else{
+      navigate("/")
+
+    }
+  }
+},[user])
   const [isChecked, setIsChecked] = useState(false);
   const provider = new GoogleAuthProvider();
-      const handleLogout = async () => {
-        await signOut(auth);
-      };
       const handleClick = async () => {
         signInWithPopup(auth, provider)
           .then((result) => {
@@ -33,21 +42,8 @@ const {user,userData}   = useAuthContext()
           });
       };
   return (
-    <>
-    <Header/>
-    {user && user.email && <h1 className="text-lg text-center text-slate-400">Logged in as {user.email}</h1>}
-       {user && <h1 className="text-lg text-center">Current Usage:{`${userData.count}/${userData.limit}`}</h1>}
-
-      <div className="w-full flex justify-center items-center">
-        {user ? (
-          <button
-            className="bg-slate-800 p-5 rounded mt-3"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        ) : (
-          <div className="border border-slate-600 rounded py-4">
+   <Layout>
+    <div className="border border-slate-600 rounded py-4 mx-auto max-w-[700px] my-20">
             <h1 className="text-slate-300 text-2xl border-b border-slate-600 pb-2 mb-2 px-5">
               Login
             </h1>
@@ -85,8 +81,7 @@ const {user,userData}   = useAuthContext()
               </button>
             </div>
           </div>
-        )}
-      </div></>
+   </Layout>
   )
 }
 

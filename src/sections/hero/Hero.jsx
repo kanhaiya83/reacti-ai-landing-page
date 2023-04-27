@@ -9,12 +9,18 @@ import arrow from "../../assets/Rightarrow.png";
 import notif from "../../assets/Notification.png";
 import person from "../../assets/People.png";
 import { FaSearch } from "react-icons/fa";
+import useGsap from "../../hooks/useGsap";
+import useGsapOpacity from "../../hooks/useGsapOpacity";
 
 const infoBoxesItems = [
   {
     labelName: "Followers",
     labelImg: FollowersIcon,
-    value: "92,680",
+    value: 92680,
+    realVal: "92,680",
+    valueSign: ",",
+    decimal: 0,
+    sign: "",
     valColor: "#DDEFFA",
     percent: "+3,840 (26,80%)",
     percentColor: "white",
@@ -23,7 +29,11 @@ const infoBoxesItems = [
   {
     labelName: "Tweet views",
     labelImg: Show,
-    value: "580.5k",
+    value: 580.5,
+    realVal: "580.5",
+    valueSign: ".",
+    decimal: 1,
+    sign: "k",
     valColor: "#17B1EA",
     percent: "+210K (16,20%)",
     percentColor: "#00DE73",
@@ -32,7 +42,11 @@ const infoBoxesItems = [
   {
     labelName: "Bounce rates",
     labelImg: Chart,
-    value: "15.43%",
+    value: 15.43,
+    realVal: "15.43",
+    valueSign: ".",
+    decimal: 2,
+    sign: "%",
     valColor: "#17B1EA",
     percent: "-0.74 (0.74%)",
     percentColor: "#F21010",
@@ -41,6 +55,8 @@ const infoBoxesItems = [
 ];
 
 const Hero = () => {
+  const slideUpRef = useGsap();
+  const opacityRef = useGsapOpacity();
   return (
     <div className="hero">
       <div className="section1">
@@ -53,12 +69,12 @@ const Hero = () => {
         </p>
 
         <div className="btns">
-          <a className="btn1" href="https://chrome.google.com/webstore/detail/reacti-ai/pmikjafnekojjckgdhcdmimoegkemdfj" target={"blank"}>Get a demo</a>
+          <button className="btn1">Get a demo</button>
           <button className="btn2">View pricing</button>
         </div>
       </div>
 
-      <div className="section2">
+      <div ref={opacityRef} className="section2">
         <div className="labels">
           <div className="left">
             <h1>Tweet perfomance</h1>
@@ -80,7 +96,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="navbar">
+        <div ref={slideUpRef} className="navbar">
           <div className="input">
             <input type="search" placeholder="Search..." />
             <FaSearch />
