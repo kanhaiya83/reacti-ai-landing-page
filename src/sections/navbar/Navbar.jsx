@@ -6,6 +6,7 @@ import { useAuthContext } from "../../context/authContext";
 import {
   signOut,
 } from "firebase/auth";
+import { auth } from "../../utils/firebase";
 const handleLogout = async () => {
       await signOut(auth);
     };
