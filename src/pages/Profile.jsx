@@ -204,7 +204,8 @@ const ReferralSection = ({ user }) => {
   };
   return (
     <div className=" flex flex-col items-center mt-10">
-      <h1 className="text-4xl text-slate-200 mb-2">Refer and Earn Rewards</h1>
+      <h1 className="text-4xl text-slate-200">Refer and Earn Rewards</h1>
+      <h4 className="text-sm  mb-2">Earn <span className="text-primary">30 requests </span> on each referral</h4>
       <div className="bg-slate-900 p-4 rounded-lg max-w-[700px] w-full">
         <h1 className="text-xl mb-1">Your referral code</h1>
         <div className="flex mb-3y rounded overflow-hidden mb-8">
