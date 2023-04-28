@@ -47,7 +47,7 @@ const ProfilePage = () => {
   return (
     <>
       <Layout>
-        <div className="w-full px-[10%]">
+        <div className="w-full px-[10%] pb-20">
           <div className="w-full flex justify-end items-center ">
             <button
               onClick={openModal}
@@ -70,7 +70,8 @@ const ProfilePage = () => {
                 {user.email}
               </h1>
               <h4 className="text-slate-400">
-               <div className="text-white font-medium">Plan:</div> {
+                <div className="text-white font-medium">Plan:</div>{" "}
+                {
                   pricingPlansData.find(
                     (plan) => plan.plan_id === currentPlanID
                   ).name
@@ -89,38 +90,38 @@ const ProfilePage = () => {
                 <div className="bg-slate-900 rounded-lg p-4 flex-1">
                   <h1 className="text-lg text-slate-200">Total Usage:</h1>
                   <div className="w-[80%] mx-auto">
-                  <Doughnut
-                    data={{
-  labels: ["Credits Used","Credits left"],
-                      datasets: [
-                        {
-                          data: [count, limit - count],
-                          backgroundColor: [
-                            'rgba(255, 99, 132, 0.6',
-                            'rgba(54, 162, 235, 0.6)',
-                          ],
-                          borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                          ],
+                    <Doughnut
+                      data={{
+                        labels: ["Credits Used", "Credits left"],
+                        datasets: [
+                          {
+                            data: [count, limit - count],
+                            backgroundColor: [
+                              "rgba(255, 99, 132, 0.6",
+                              "rgba(54, 162, 235, 0.6)",
+                            ],
+                            borderColor: [
+                              "rgba(255, 99, 132, 1)",
+                              "rgba(54, 162, 235, 1)",
+                            ],
+                          },
+                        ],
+                      }}
+                      options={{
+                        cutout: 60,
+                        plugins: {
+                          legend: {
+                            // display: false,
+                          },
                         },
-                      ],
-                    }}
-                    options={{
-                      cutout: 60,
-                      plugins: {
-                        legend: {
-                          // display: false,
-                        },
-                      },
-                    }}
-                  />
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="bg-slate-900 rounded-lg p-4 flex-[2]">
-                <h1 className="text-lg text-slate-200">Last Week Usage:</h1>
+                  <h1 className="text-lg text-slate-200">Last Week Usage:</h1>
 
-                  <WeeklyUsageChart/>
+                  <WeeklyUsageChart />
                 </div>
               </div>
             </div>
@@ -133,25 +134,23 @@ const ProfilePage = () => {
               </button>
             </div> */}
           </div>
+          <div className="w-ful h-[1px] bg-slate-800 my-4"></div>
+          <ReferralSection
+            modalIsOpen={modalIsOpen}
+            setIsOpen={setIsOpen}
+            user={user}
+          />
         </div>
-        <ReferModal
-          modalIsOpen={modalIsOpen}
-          setIsOpen={setIsOpen}
-          user={user}
-        />
       </Layout>
     </>
   );
 };
 
-const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
+const ReferralSection = ({ user }) => {
   const { userDataQuery, setCounter } = useAuthContext();
   const [enteredCode, setEnteredCode] = useState("");
   const [enteredRedeemCode, setEnteredRedeemCode] = useState("");
   const [copied, setCopied] = useState(false);
-  function closeModal() {
-    setIsOpen(false);
-  }
   const userData = userDataQuery?.data || {};
   const handleRefer = async () => {
     if (enteredCode.length != 10) {
@@ -176,7 +175,6 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
       } else {
         errorToast("Some error occurred!!");
       }
-      setIsOpen(false);
       setEnteredCode("");
     } catch (e) {
       console.log(e);
@@ -206,7 +204,6 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
       } else {
         errorToast("Some error occurred!!");
       }
-      setIsOpen(false);
       setEnteredRedeemCode("");
     } catch (e) {
       console.log(e);
@@ -214,16 +211,12 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
     }
   };
   return (
-    <ReactModal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      style={customStyles}
-      contentLabel="Refer Modal"
-    >
-      <div className="bg-slate-800 text-white px-5 py-4 flex flex-col items-stretch">
-        <h1 className="text-2xl text-center mb-2">Refer a friend</h1>
-        <div className="flex mb-3 pb-3 border-b border-slate-600">
-          <h1 className="bg-slate-700 p-2 flex-[3]">{userData.referralCode}</h1>
+    <div className=" flex flex-col items-center mt-10">
+      <h1 className="text-4xl text-slate-200 mb-2">Refer and Earn Rewards</h1>
+      <div className="bg-slate-900 p-4 rounded-lg max-w-[700px] w-full">
+        <h1 className="text-xl mb-1">Your referral code</h1>
+        <div className="flex mb-3y rounded overflow-hidden mb-8">
+          <h1 className="bg-slate-800 p-2 flex-[3] ">{userData.referralCode}</h1>
           <button
             className="bg-primary p-2 flex-1"
             onClick={() => {
@@ -238,14 +231,14 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
           </button>
         </div>
         <h1 className="text-xl mb-1">Got a referral code?</h1>
-        <div className="flex mb-4">
+        <div className="flex mb-8  rounded overflow-hidden">
           <input
             type="text"
             value={enteredCode}
             onChange={(e) => {
               setEnteredCode(e.target.value);
             }}
-            className=" bg-slate-500 p-2 flex-[3]"
+            className=" bg-transparent border-4 border-slate-800 border-r-0 p-3 flex-[3]"
           />
           <button className="bg-primary p-2 flex-1" onClick={handleRefer}>
             Submit
@@ -259,14 +252,14 @@ const ReferModal = ({ modalIsOpen, setIsOpen, user }) => {
             onChange={(e) => {
               setEnteredRedeemCode(e.target.value);
             }}
-            className=" bg-slate-500 p-2 flex-[3]"
+            className=" bg-transparent border-4 border-slate-800 border-r-0 p-3 flex-[3]"
           />
           <button className="bg-primary p-2 flex-1" onClick={handleRedeem}>
             Redeem
           </button>
         </div>
       </div>
-    </ReactModal>
+    </div>
   );
 };
 export default ProfilePage;
