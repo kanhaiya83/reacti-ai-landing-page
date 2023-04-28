@@ -47,15 +47,7 @@ const ProfilePage = () => {
   return (
     <>
       <Layout>
-        <div className="w-full px-[10%] pb-20">
-          <div className="w-full flex justify-end items-center ">
-            <button
-              onClick={openModal}
-              className="text-primary text p-3 rounded text-lg underline"
-            >
-              Got a referral code?
-            </button>
-          </div>
+        <div className="w-full px-[10%] pt-10 pb-20">
           <div className="flex items-center justify-center gap-4">
             <img
               src={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${user.email.replaceAll(
@@ -216,7 +208,7 @@ const ReferralSection = ({ user }) => {
       <div className="bg-slate-900 p-4 rounded-lg max-w-[700px] w-full">
         <h1 className="text-xl mb-1">Your referral code</h1>
         <div className="flex mb-3y rounded overflow-hidden mb-8">
-          <h1 className="bg-slate-800 p-2 flex-[3] ">{userData.referralCode}</h1>
+          <h1 className="bg-slate-800 p-3 flex-[3] ">{userData.referralCode}</h1>
           <button
             className="bg-primary p-2 flex-1"
             onClick={() => {
@@ -245,7 +237,7 @@ const ReferralSection = ({ user }) => {
           </button>
         </div>
         <h1 className="text-xl mb-1">Got a coupon code?Redeem here</h1>
-        <div className="flex">
+        <div className="flex  rounded overflow-hidden">
           <input
             type="text"
             value={enteredRedeemCode}
