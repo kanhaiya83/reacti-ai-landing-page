@@ -48,26 +48,26 @@ function Last7Days() {
 }
 
 const WeeklyUsageChart = () => {
-  // const {requestsData} = useAuthContext()
+  const {userData} = useAuthContext()
+  const requestsData = userData?.requestsData || []
 const lastWeekData = Last7Days()
-// console.log({requestsData,lastWeekData});
 const labels = lastWeekData.map(d=>d.day)
-// const temp = lastWeekData.map(d=>{
-//   const dateOfDay = d.date.getDate()
-//   let count=0;
-//   requestsData.forEach(requestDate => {
-//     if(new Date(requestDate._seconds*1000).getDate()===dateOfDay){
-//       count++;
-//     }
-//   });
-//   return count
-// })
+const temp = lastWeekData.map(d=>{
+  const dateOfDay = d.date.getDate()
+  let count=0;
+  requestsData.forEach(requestDate => {
+    if(new Date(requestDate).getDate()===dateOfDay){
+      count++;
+    }
+  });
+  return count
+})
 const data = {
   labels,
   datasets: [
     {
       label: "Requests",
-      data:[23,64,23,2,44,22,34],
+      data:temp,
       backgroundColor: "rgba(255, 99, 132, 0.8)",
       borderRadius:4
     },

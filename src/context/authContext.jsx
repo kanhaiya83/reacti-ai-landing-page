@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
     console.log(data);
     return data
   },{enabled: !!(user && setupCompleted)})
-  const value = { user,setupCompleted, loading, error, userData, setCounter ,userDataQuery};
+  const value = { user,setupCompleted, loading, error, userData, setCounter ,userDataQuery,userData: userDataQuery.isSuccess ? userDataQuery.data : false};
   
  
   useEffect(() => {
