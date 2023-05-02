@@ -9,7 +9,7 @@ import {
 import { auth } from "../../utils/firebase";
 const handleLogout = async () => {
       await signOut(auth);
-      Cookies.remove('name')
+      Cookies.remove('fb-session')
     };
 const Navbar = ({ show, setShow }) => {
   const handleShow = () => {
