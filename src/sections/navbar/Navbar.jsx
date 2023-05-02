@@ -9,6 +9,7 @@ import {
 import { auth } from "../../utils/firebase";
 const handleLogout = async () => {
       await signOut(auth);
+      Cookies.remove('name')
     };
 const Navbar = ({ show, setShow }) => {
   const handleShow = () => {

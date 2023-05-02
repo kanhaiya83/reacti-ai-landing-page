@@ -36,9 +36,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const ProfilePage = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+
   const { user, userDataQuery } = useAuthContext();
 
   const limit = userDataQuery?.data?.monthly_limit || 30;
@@ -84,23 +82,23 @@ const ProfilePage = () => {
                   <div className="w-[80%] mx-auto">
                     <Doughnut
                       data={{
-                        labels: ["Credits Used", "Credits left"],
+                        labels: [`${count} credits Used`, `${limit-count} credits left`],
                         datasets: [
                           {
                             data: [count, limit - count],
                             backgroundColor: [
-                              "rgba(255, 99, 132, 0.6",
-                              "rgba(54, 162, 235, 0.6)",
+                              "rgba(200, 200, 200, 0.3",
+                              "rgb(114, 20, 255, 0.3)",
                             ],
                             borderColor: [
-                              "rgba(255, 99, 132, 1)",
-                              "rgba(54, 162, 235, 1)",
+                              "rgba(200, 200, 200, 0.4)",
+                              "rgb(114, 20, 255, 0.4)",
                             ],
                           },
                         ],
                       }}
                       options={{
-                        cutout: 60,
+                        cutout: 100,
                         plugins: {
                           legend: {
                             // display: false,

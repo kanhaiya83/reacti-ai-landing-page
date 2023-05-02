@@ -66,9 +66,10 @@ const data = {
   labels,
   datasets: [
     {
-      label: "Requests",
+      label: "Requests this week",
       data:temp,
-      backgroundColor: "rgba(255, 99, 132, 0.8)",
+      backgroundColor: "rgb(114, 20, 255,0.3)",
+      borderColor:"rgb(114, 20, 255)",
       borderRadius:4
     },
   ],
