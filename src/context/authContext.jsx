@@ -43,18 +43,12 @@ export const AuthContextProvider = ({ children }) => {
             console.log(response);
             if (response.success) {
               Cookies.set("fb-session", response.sessionCookie);
-              fetch(serverURL + "/checkauth", {
-                headers: { "fb-session": response.sessionCookie },
-              }).then(() => {
-                setCounter((prev) => prev + 1);
-              });
+
             } else {
-              Cookies.remove("fb-session");
+              // Cookies.remove("fb-session");
             }
           });
-      } else {
-        Cookies.remove("fb-session");
-      }
+      } 
     })();
   }, [user]);
   useEffect(() => {
