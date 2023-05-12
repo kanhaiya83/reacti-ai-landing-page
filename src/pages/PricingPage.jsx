@@ -1,50 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import CrossIcon from "./../assets/icons/cross.svg";
 import TickIcon from "./../assets/icons/tick.svg";
-import axios from "axios"
+import axios from "axios";
 import Layout from "../components/Layout";
 import { useAuthContext } from "../context/authContext";
-const featurePoints=[
+import { toast } from "react-toastify";
+import { errorToast } from "../utils/notify";
+const featurePoints = [
   "Personal Bot Setup",
   "Personalized Bot Dashboard",
   "Sentiment Analysis",
   "Users Analysis",
   "Conversation threads",
-  "Keyword Analysis & Many More"
-]
+  "Keyword Analysis & Many More",
+];
 export const pricingPlansData = [
   {
     price: 0,
-    plan_id:0,
+    plan_id: 0,
     name: "Free",
     heading: "Perfect to start with",
     heading2: "No credit card required",
-    credits:1000,
-    features:featurePoints.slice(0,2),
+    credits: 1000,
+    features: featurePoints.slice(0, 2),
     monthly_limit: 30,
     daily_limit: 30,
     premium_support: false,
   },
   {
     price: 5,
-    plan_id:5,
+    plan_id: 5,
     name: "Starter",
     heading: "For Beginners",
     heading2: "$60/year per account",
-    credits:5000,
-    features:[...featurePoints.slice(0,2),"Basic Insights on User Engagements"],
+    credits: 5000,
+    features: [
+      ...featurePoints.slice(0, 2),
+      "Basic Insights on User Engagements",
+    ],
     monthly_limit: 200,
     daily_limit: 5,
     premium_support: false,
   },
   {
     price: 15,
-    plan_id:15,
+    plan_id: 15,
     name: "Basic",
     heading: "For the Active Users",
     heading2: "$180/year per account",
-    credits:-1,
-    features:featurePoints.slice(0),
+    credits: -1,
+    features: featurePoints.slice(0),
 
     monthly_limit: 1500,
     daily_limit: 50,
@@ -52,12 +57,12 @@ export const pricingPlansData = [
   },
   {
     price: 30,
-    plan_id:30,
+    plan_id: 30,
     name: "Professional",
     heading: "For the Real Influencers",
     heading2: "$360/year per account",
-    credits:-1,
-    features:featurePoints.slice(0),
+    credits: -1,
+    features: featurePoints.slice(0),
 
     monthly_limit: 1500,
     daily_limit: 50,
@@ -65,30 +70,57 @@ export const pricingPlansData = [
   },
 ];
 const PricingPage = () => {
-  const {user,userDataQuery} = useAuthContext()
-  const userPlanId = (userDataQuery.isSuccess) ? userDataQuery.data.current_plan_id : 0
-  console.log({userDataQuery});
-  const handlePayment=async (id)=>{
-    if(id == 0)return;
-    const res =await  axios.get("/user/createorder/"+id)
-    if(res.data && res.data.success){
-      window.open(res.data.payment_url, '_blank');
-    }
-  }
-  return (
-    <Layout>    <section class=" body-font overflow-hidden">
-      <div class="container px-5 py-24 mx-auto">
-        <h1 className="text-5xl text-gray-100 mb-3 text-center">Simple Straight forward Pricing</h1>
-        <h4 className="text-xl text-center text-gray-400 mb-8">Choose the plan that's right for your business.</h4>
-        <div class="flex flex-wrap -m-4">
-          {pricingPlansData.map((d) => {
-            return <PricingCard key={d.price} data={d} onClick={()=>{handlePayment(d.plan_id)}} currentPlan={userPlanId === d.plan_id}/>;
-          })}
-        </div>
-      </div>
-    </section>
-    </Layout>
+  const { userDataQuery } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+  const userPlanId = userDataQuery.isSuccess
+    ? userDataQuery.data.current_plan_id
+    : false;
+  const handlePayment = async (id) => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      if (id == 0) return;
+      const res = await toast.promise(axios.get("/user/createorder/" + id), {
+        pending: "Creating your order!",
+      });
 
+      if (res.data && res.data.success) {
+        window.open(res.data.payment_url, "_blank");
+      }
+      setLoading(false);
+    } catch (e) {
+      errorToast(e.response?.data?.message || "Some error occurred!");
+      setLoading(false);
+    }
+  };
+  return (
+    <Layout>
+      {" "}
+      <section class=" body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+          <h1 className="text-5xl text-gray-100 mb-3 text-center">
+            Simple Straight forward Pricing
+          </h1>
+          <h4 className="text-xl text-center text-gray-400 mb-8">
+            Choose the plan that's right for your business.
+          </h4>
+          <div class="flex flex-wrap -m-4">
+            {pricingPlansData.map((d) => {
+              return (
+                <PricingCard
+                  key={d.price}
+                  data={d}
+                  onClick={() => {
+                    handlePayment(d.plan_id);
+                  }}
+                  currentPlan={userPlanId === d.plan_id}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </Layout>
   );
 };
 const PricingCard = ({ currentPlan, onClick, data }) => {
@@ -142,23 +174,29 @@ const PricingCard = ({ currentPlan, onClick, data }) => {
           </span>
           Premium Support
         </p>
-        <button 
+        <button
           class={`flex items-center mt-auto text-white  border-0 py-2 px-4 w-full focus:outline-none  rounded  ${
-            data.price==0 || currentPlan  ?"bg-gray-700 ": "bg-indigo-500 hover:bg-indigo-600"
-          }`} onClick={onClick} disabled={currentPlan}
+            data.price == 0 || currentPlan
+              ? "bg-gray-700 "
+              : "bg-indigo-500 hover:bg-indigo-600"
+          }`}
+          onClick={onClick}
+          disabled={currentPlan}
         >
-          {data.price ==0 ?"Free" :(currentPlan ?"Current Plan" :"Buy")}
-          {data.price != 0 && <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="w-4 h-4 ml-auto"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>}
+          {data.price == 0 ? "Free" : currentPlan ? "Current Plan" : "Buy"}
+          {data.price != 0 && (
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-4 h-4 ml-auto"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          )}
         </button>
       </div>
     </div>
