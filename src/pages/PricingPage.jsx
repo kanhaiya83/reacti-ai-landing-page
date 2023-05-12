@@ -21,10 +21,7 @@ export const pricingPlansData = [
     name: "Free",
     heading: "Perfect to start with",
     heading2: "No credit card required",
-    credits: 1000,
-    features: featurePoints.slice(0, 2),
     monthly_limit: 30,
-    daily_limit: 30,
     premium_support: false,
   },
   {
@@ -33,11 +30,6 @@ export const pricingPlansData = [
     name: "Starter",
     heading: "For Beginners",
     heading2: "$60/year per account",
-    credits: 5000,
-    features: [
-      ...featurePoints.slice(0, 2),
-      "Basic Insights on User Engagements",
-    ],
     monthly_limit: 200,
     daily_limit: 5,
     premium_support: false,
@@ -48,9 +40,6 @@ export const pricingPlansData = [
     name: "Basic",
     heading: "For the Active Users",
     heading2: "$180/year per account",
-    credits: -1,
-    features: featurePoints.slice(0),
-
     monthly_limit: 1500,
     daily_limit: 50,
     premium_support: true,
@@ -61,9 +50,6 @@ export const pricingPlansData = [
     name: "Professional",
     heading: "For the Real Influencers",
     heading2: "$360/year per account",
-    credits: -1,
-    features: featurePoints.slice(0),
-
     monthly_limit: 1500,
     daily_limit: 50,
     premium_support: true,
@@ -148,6 +134,12 @@ const PricingCard = ({ currentPlan, onClick, data }) => {
           </h1>
           <h2 className="font-thin  text-gray-300  py-2">{data.heading2}</h2>
         </div>
+        <p class="flex items-center text-gray-400 mb-2">
+          <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-800 text-gray-500 rounded-full flex-shrink-0">
+            <img src={TickIcon} alt="" />
+          </span>
+          {data.monthly_limit + " requests/month"}
+        </p>
         <p class="flex items-center text-gray-400 mb-2">
           <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-800 text-gray-500 rounded-full flex-shrink-0">
             <img src={TickIcon} alt="" />
