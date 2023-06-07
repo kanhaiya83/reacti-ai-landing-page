@@ -7,13 +7,17 @@ import {
 
 import "./utils/firebase";
 import LoginPage from "./pages/Login";
-import AdminPage from "./pages/Admin";
 import "./App.css";
 import HomePage from "./pages/Home";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 import PricingPage from "./pages/PricingPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProfilePage from "./pages/Profile";
+import AdminLayout from "./Layout/AdminLayout";
+import AdminLogin from "./components/AdminPage/AdminLogin";
+import UsersPanel from "./components/AdminPage/UsersPanel";
+import PromptPanel from "./components/AdminPage/PromptPanel";
+import CouponsPanel from "./components/AdminPage/CouponsPanel";
 
 // Create a client
 const router = createBrowserRouter(
@@ -21,12 +25,18 @@ const router = createBrowserRouter(
     <>
       <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/pricing" element={<PricingPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+      
       </Route>
+      <Route path="/admin" element={<AdminLayout />}>
+          <Route path="login" element={<AdminLogin/>}/>
+          <Route path="coupons" element={<CouponsPanel/>}/>
+          <Route path="" element={<UsersPanel/>}/>
+          <Route path="prompt" element={<PromptPanel/>}/>
+        </Route>
     </>
   ));
 function App() {

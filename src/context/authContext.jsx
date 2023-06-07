@@ -22,10 +22,9 @@ export const AuthContextProvider = ({ children }) => {
   const [counter, setCounter] = useState(0);
   const userDataQuery = useQuery('user', async ()=>{
     const{ data } = await axios.get("/user/fetchdata")
-    console.log(data);
     return data
   },{enabled: !!(user && setupCompleted)})
-  const value = { user,setupCompleted, loading, error, userData, setCounter ,userDataQuery,userData: userDataQuery.isSuccess ? userDataQuery.data : false};
+  const value = { user,setupCompleted, loading, error, setCounter ,userDataQuery,userData: userDataQuery.isSuccess ? userDataQuery.data : false};
   
  
   useEffect(() => {
