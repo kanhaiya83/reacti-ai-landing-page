@@ -20,7 +20,7 @@ function App() {
       <Navbar show={show} setShow={setShow} />
       <Hero />
       <Services />
-      <Guides />
+      {/* <Guides /> */}
       <div ref={slideUpRef} className="twitterImg-wrap">
         <div>
           <img src={twitterHome} alt="Twitter Homepage" />

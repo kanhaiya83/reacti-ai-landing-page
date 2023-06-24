@@ -13,6 +13,7 @@ import Cookies from "js-cookie";
 import WeeklyUsageChart from "../components/WeeklyUsageChart";
 import ProfileMenu from "../components/ProfileMenu";
 import PromptSection from "../components/PromptSection";
+import TonesTab from "../components/TonesTab";
 
 const customStyles = {
   content: {
@@ -107,6 +108,7 @@ const ProfilePage = () => {
                 </div>
               </div>}
               {tab ===1 &&<PromptSection/>}
+              {tab ==="tones" &&<TonesTab/>}
               {tab ===2 &&<ReferralSection/>}
               {tab ===3 && <div className="flex items-center justify-center gap-4">
                 <img

@@ -1,5 +1,15 @@
 import writeXlsxFile from "write-excel-file";
+import { child, get } from "firebase/database";
+import { db } from "./firebase";
 
+export const getDbItem = async(itemPath)=>{
+  const itemRef = child(db, itemPath);
+  const ss = await get(itemRef);
+  if(ss.exists()){
+    return ss.val()
+  }
+  return false
+}
 export const convertToExcelFormat = (jsonData) => {
   const data = [];
   const HEADER_ROW = [
@@ -42,3 +52,5 @@ export const downloadExcel = async (codes,name) => {
     fileName: name + ".xlsx",
   });
 };
+
+

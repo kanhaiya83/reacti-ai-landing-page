@@ -8,6 +8,7 @@ const ProfileMenu = ({tab,setTab}) => {
     <div className=" border-r border-slate-800 p-4 flex flex-col min-h-screen h-full">
             <TabLink text={"Dashboard"} onClick={()=>{handleClick(0)}} selected={tab==0}/>
             <TabLink text={"Prompt"} onClick={()=>{handleClick(1)}} selected={tab==1}/>
+            <TabLink text={"Tones"} onClick={()=>{handleClick("tones")}} selected={tab=="tones"}/>
             <TabLink text={"Refer"} onClick={()=>{handleClick(2)}} selected={tab==2}/>
             <TabLink text={"Profile"} onClick={()=>{handleClick(3)}} selected={tab==3}/>
     </div>
